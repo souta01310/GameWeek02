@@ -1,4 +1,7 @@
+using System.Reflection;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float baseMoveSpeed = 5f; // 基本移動速度
     [SerializeField] private float runMultiplier = 1.8f; // Shiftで走る倍率
     [SerializeField] private float acceleration = 10f; // 移動加速のなめらかさ
+
 
     private Rigidbody rb;
     private Vector3 inputDirection;
@@ -33,6 +37,7 @@ public class PlayerController : MonoBehaviour
         // ターゲット速度を補間してスムーズに
         Vector3 targetVelocity = inputDirection * currentSpeed;
         moveVelocity = Vector3.Lerp(moveVelocity, targetVelocity, acceleration * Time.deltaTime);
+        
     }
 
     private void FixedUpdate()
@@ -47,4 +52,7 @@ public class PlayerController : MonoBehaviour
     {
         speedMultiplier = Mathf.Clamp(value, 0f, 2f); // 安全な範囲に制限
     }
+    
+
+    
 }
